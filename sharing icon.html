@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sharing icon</title>
+    <link rel="stylesheet" href="styling.css">
+</head>
+<body>
+    <img src="amazon_PNG21.png">
+    <h1>this logo belongs to amazon.i'm just trying to share this page</h1>
+    <img class="share-icon" src="share-icon-2048x1911-60w04qpe.png" alt="Share Icon">
+    <div class="share-container">
+     <span class="share-icon" ></span>
+        <div class="share-options">
+          <a href="#" data-social-app="facebook">
+            <i class="fa fa-facebook"></i> Share on Facebook
+          </a>
+          <a href="#" data-social-app="twitter">
+            <i class="fa fa-twitter"></i> Share on Twitter
+          </a>
+          <a href="#" data-social-app="whatsapp">
+            <i class="fa fa-whatsapp"></i> Share on WhatsApp (requires mobile device)
+          </a>
+          </div>
+      </div>
+    
+      <script>
+        const shareIcon = document.querySelector('.share-icon');
+        const shareOptions = document.querySelector('.share-options');
+    
+        shareIcon.addEventListener('click', () => {
+          shareOptions.style.display = shareOptions.style.display === 'none' ? 'block' : 'none';
+        });
+    
+        document.addEventListener('click', (event) => {
+          if (event.target !== shareIcon && !shareOptions.contains(event.target)) {
+            shareOptions.style.display = 'none';
+          }
+    
+          // Handle social app click (example for Facebook)
+          if (event.target.dataset.socialApp === 'facebook') {
+            const shareUrl = 'https://www.example.com/your-page-to-share'; // Replace with your actual URL
+            window.open(`https://www.facebook.com/sharer.php?u=${shareUrl}`, 'facebook-share-dialog');
+          }
+          else if (event.target.dataset.socialApp === 'twitter') {
+            const shareUrl = 'https://www.example.com/your-page-to-share'; // Replace with your actual URL
+
+            window.open(`https://twitter.com/intent/tweet?text=${shareUrl}`, 'twitter-share-dialog');
+          } else if (event.target.dataset.socialApp === 'whatsapp') {
+            // WhatsApp sharing requires mobile device and a pre-configured link format
+            if (navigator.userAgent.match(/mobile/i)) {
+              window.open(`whatsapp://send?text=${shareUrl}`);
+            } else {
+              alert('WhatsApp sharing is only available on mobile devices.');
+            }
+          }
+        
+        });
+      </script>
+</body>
+</html>
